@@ -7,35 +7,28 @@ document.addEventListener('DOMContentLoaded', function () {
   campoPassword2.addEventListener("input", passwordCheck);
 
   function passwordCheck() {
-      if (campoPassword.value === campoPassword2.value && campoPassword.value.length >= 6) {
+      const password1 = campoPassword.value;
+      const password2 = campoPassword2.value;
+
+      if (password1 === password2 && password1.length >= 6) {
+          campoPassword2.setCustomValidity('');
           campoPassword2.classList.remove('is-invalid');
           campoPassword2.classList.add('is-valid');
       } else {
+          campoPassword2.setCustomValidity('Las contraseñas deben ser iguales y tener al menos 6 caracteres.');
           campoPassword2.classList.remove('is-valid');
           campoPassword2.classList.add('is-invalid');
       }
   }
 
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-        'use strict'
-      
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-      
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-          .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-              if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-              }
-      
-              form.classList.add('was-validated')
-            }, false)
-          })
-      })()
+  // Agregar más funciones de validación para otros campos si es necesario
+
+  registroBtn.addEventListener('click', function (event) {
+      const form = document.querySelector('form');
+      if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+  });
 });
-
-
